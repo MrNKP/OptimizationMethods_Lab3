@@ -17,7 +17,7 @@ public class GoldenSection {
         }
     }
     private double F(double X) {
-        return functs.f3(X);
+        return functs.f1(X);
     }
     private double eps;
     private double a;
@@ -39,6 +39,7 @@ public class GoldenSection {
         if (abs(a-b)<=eps){
             N = 2;
             System.out.println("Xmin = " + (a + b)/2);
+            System.out.println("N = " + N);
         }
         else {
             while (abs(a-b)>eps)
@@ -46,6 +47,7 @@ public class GoldenSection {
                 nextstep();
             }
             System.out.println("Xmin = " + (a + b)/2);
+            System.out.println("N = " + N);
         }
     }
 
