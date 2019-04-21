@@ -7,32 +7,17 @@ import static java.lang.Math.sqrt;
 public class GoldenSection {
     private static class functs{
         static double f1(double X) {
-            return 1; // X
-        }
-        static double f2(double X) {
-            return 12*X; // 6*X^2
-        }
-        static double f3(double X) {
-            return 4*3*X*X; // 4*X^3
-        }
-        static double f4(double X) {
-            return 9*4*X*X*X ; // + Y - X*X*X*X
-        }
-        static double f5(double X) {
-            return 24*X; //12*X^2
-        }
-        static double f6(double X) {
             return (127/4)*X*X - (61/4)*X +2; //Example
         }
-        static double f7(double X) {
+        static double f2(double X) {
             return (X-1)*(X-1); //Example2
         }
-        static double f8(double X) {
+        static double f3(double X) {
             return X*X*X*X + 2*X*X +4*X +1; //Example3
         }
     }
     private double F(double X) {
-        return functs.f8(X);
+        return functs.f3(X);
     }
     private double eps;
     private double a;
