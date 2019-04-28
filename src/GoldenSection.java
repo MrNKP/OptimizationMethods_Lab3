@@ -1,8 +1,6 @@
 import java.awt.*;
 
-import static java.lang.Math.abs;
-import static java.lang.Math.nextAfter;
-import static java.lang.Math.sqrt;
+import static java.lang.Math.*;
 
 public class GoldenSection {
     private static class functs{
@@ -15,9 +13,12 @@ public class GoldenSection {
         static double f3(double X) {
             return X*X*X*X + 2*X*X +4*X +1; //Example3
         }
+        static double f4(double X) {
+            return (-1)*sin(X); //Example4
+        }
     }
     private double F(double X) {
-        return functs.f1(X);
+        return functs.f4(X);
     }
     private double eps;
     private double a;
@@ -27,6 +28,7 @@ public class GoldenSection {
     private double lastF;
     private boolean right;
     private int N;
+    private boolean chg;
 
     public GoldenSection(double A, double B, double EPS){
         eps = EPS;
@@ -53,6 +55,7 @@ public class GoldenSection {
 
     private void firststep(){
         N = 0;
+        chg = false;
         //yk = a + ((3+sqrt(5))/2)*(b-a);
         yk = a + 0.382*(b-a);
         zk = a + b - yk;
@@ -79,7 +82,10 @@ public class GoldenSection {
                 lastF = F(yk);
                 b = zk;
                 zk = yk;
-                yk = a + b - yk;
+                if (chg)
+                    yk = 0.618 * a + 0.382 * b;
+                else
+                    yk = a + b - yk;
                 right = true;
             }
             else {
@@ -95,7 +101,10 @@ public class GoldenSection {
                 lastF = F(yk);
                 b = zk;
                 zk = yk;
-                yk = a + b - yk;
+                if (chg)
+                    yk = 0.618 * a + 0.382 * b;
+                else
+                    yk = a + b - yk;
                 right = true;
             }
             else {
@@ -106,5 +115,6 @@ public class GoldenSection {
                 right = false;
             }
         }
+        if (!chg && yk < zk) chg = true;
     }
 }
